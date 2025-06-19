@@ -26,7 +26,7 @@ function App() {
       title: '',
       location: '',
       start,
-      end,
+      end: new Date(start.getTime() + 60 * 60 * 1000), // Default 1 hour duration
     });
     setIsOpen(true);
   }, []);
@@ -37,6 +37,8 @@ function App() {
   }, []);
 
   const handleAddEvent = () => {
+    if (!newEvent.title.trim()) return;
+    
     const eventToAdd = {
       ...newEvent,
       id: Date.now(),
@@ -51,10 +53,12 @@ function App() {
     });
   };
 
-  const handleUpdateEvent = (updatedEvent) => {
+  const handleUpdateEvent = () => {
+    if (!selectedEvent?.title.trim()) return;
+    
     setEvents(
       events.map((event) =>
-        event.id === updatedEvent.id ? updatedEvent : event
+        event.id === selectedEvent.id ? selectedEvent : event
       )
     );
     setIsEditOpen(false);
@@ -107,18 +111,21 @@ function App() {
           Upcoming Events
         </button>
       </div>
-      <Calendar
-        localizer={localizer}
-        events={filteredEvents}
-        startAccessor="start"
-        endAccessor="end"
-        style={{ height: 500, margin: '20px' }}
-        selectable
-        onSelectSlot={handleSelectSlot}
-        onSelectEvent={handleSelectEvent}
-        eventPropGetter={eventStyleGetter}
-        defaultView="month"
-      />
+      <div className="calendar-container">
+        <Calendar
+          localizer={localizer}
+          events={filteredEvents}
+          startAccessor="start"
+          endAccessor="end"
+          style={{ height: 500 }}
+          selectable
+          onSelectSlot={handleSelectSlot}
+          onSelectEvent={handleSelectEvent}
+          eventPropGetter={eventStyleGetter}
+          defaultView="month"
+          views={['month', 'week', 'day']}
+        />
+      </div>
 
       {/* Add Event Popup */}
       <Popup open={isOpen} onClose={() => setIsOpen(false)} modal>
@@ -135,6 +142,7 @@ function App() {
                 onChange={(e) =>
                   setNewEvent({ ...newEvent, title: e.target.value })
                 }
+                className="event-title-input"
               />
             </div>
             <div className="form-group">
@@ -145,6 +153,7 @@ function App() {
                 onChange={(e) =>
                   setNewEvent({ ...newEvent, location: e.target.value })
                 }
+                className="event-location-input"
               />
             </div>
           </div>
@@ -156,6 +165,7 @@ function App() {
               <button
                 className="mm-popup__btn mm-popup__btn--primary"
                 onClick={handleAddEvent}
+                data-testid="save-event-btn"
               >
                 Save
               </button>
@@ -182,6 +192,7 @@ function App() {
                     title: e.target.value,
                   })
                 }
+                className="event-title-input"
               />
             </div>
             <div className="form-group">
@@ -195,6 +206,7 @@ function App() {
                     location: e.target.value,
                   })
                 }
+                className="event-location-input"
               />
             </div>
           </div>
@@ -202,6 +214,7 @@ function App() {
             <button
               className="mm-popup__btn mm-popup__btn--danger"
               onClick={handleDeleteEvent}
+              data-testid="delete-event-btn"
             >
               Delete
             </button>
@@ -214,7 +227,8 @@ function App() {
               </button>
               <button
                 className="mm-popup__btn mm-popup__btn--primary"
-                onClick={() => handleUpdateEvent(selectedEvent)}
+                onClick={handleUpdateEvent}
+                data-testid="update-event-btn"
               >
                 Save
               </button>

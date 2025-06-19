@@ -2,6 +2,8 @@
   text-align: center;
   padding: 20px;
   font-family: Arial, sans-serif;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .filter-buttons {
@@ -23,15 +25,22 @@
   background-color: #45a049;
 }
 
+.calendar-container {
+  margin: 0 auto;
+  max-width: 1000px;
+}
+
 .mm-popup__box {
   background: #fff;
   padding: 20px;
   border-radius: 8px;
   width: 400px;
+  margin: 0 auto;
 }
 
 .mm-popup__box__header {
   margin-bottom: 15px;
+  text-align: center;
 }
 
 .mm-popup__box__body {
@@ -89,4 +98,24 @@
 
 .rbc-event {
   cursor: pointer;
+  padding: 2px 5px;
+}
+
+.rbc-month-view {
+  height: 600px !important;
+}
+
+.rbc-day-bg + .rbc-day-bg,
+.rbc-header + .rbc-header {
+  border-left: 1px solid #ddd;
+}
+
+.rbc-header {
+  padding: 10px 3px;
+  text-align: center;
+}
+
+.rbc-date-cell {
+  padding: 5px;
+  text-align: center;
 }
