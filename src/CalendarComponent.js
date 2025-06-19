@@ -47,6 +47,13 @@ const CalendarComponent = () => {
         <button className="btn" onClick={() => setFilter('all')}>All</button>
         <button className="btn" onClick={() => setFilter('past')}>Past</button>
         <button className="btn" onClick={() => setFilter('upcoming')}>Upcoming</button>
+        <button
+          className="btn"
+          data-cy="create-event"
+          onClick={() => setSelectedDate(new Date())}
+        >
+          Create Event
+        </button>
       </div>
 
       <Calendar
@@ -62,9 +69,7 @@ const CalendarComponent = () => {
           const isPast = event.start < new Date();
           return {
             style: {
-              backgroundColor: isPast
-                ? 'rgb(222, 105, 135)'
-                : 'rgb(140, 189, 76)',
+              backgroundColor: isPast ? 'rgb(222, 105, 135)' : 'rgb(140, 189, 76)',
               borderRadius: '6px',
               color: 'white',
             },
