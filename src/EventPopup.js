@@ -33,11 +33,13 @@ const EventPopup = ({ selectedDate, editingEvent, onSave, onDelete, onClose }) =
       <input placeholder="Event Location" value={location} onChange={e => setLocation(e.target.value)} />
 
       <div className="popup-actions">
-        {editingEvent && (
-          <button className="mm-popup__btn--danger" onClick={onDelete}>Delete</button>
-        )}
-        <button className="mm-popup__btn--info" onClick={handleSave}>Save</button>
-      </div>
+  {editingEvent && (
+    <button className="mm-popup__btn--danger" onClick={onDelete}>Delete</button>
+  )}
+  <div className="mm-popup__box__footer__right-space">
+    <button className="mm-popup__btn" onClick={handleSave}>Save</button>
+  </div>
+</div>
     </div>
   );
 };
