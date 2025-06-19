@@ -1,14 +1,12 @@
-import React from 'react';
-import CalendarComponent from './CalendarComponent';
-import './styles.css';
+// src/App.js
+import React from "react";
+import CalendarComponent from "./CalendarComponent";
 
-function App() {
-  return (
-    <div className="App">
-      <h1>Event Tracker Calendar</h1>
-      <CalendarComponent />
-    </div>
-  );
-}
+const App = () => (
+  <div>
+    <h1>Event Tracker</h1>
+    <CalendarComponent />
+  </div>
+);
 
 export default App;
