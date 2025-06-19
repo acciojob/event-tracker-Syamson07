@@ -23,11 +23,19 @@
   background-color: #45a049;
 }
 
-.popup-content {
+.mm-popup__box {
   background: #fff;
   padding: 20px;
   border-radius: 8px;
   width: 400px;
+}
+
+.mm-popup__box__header {
+  margin-bottom: 15px;
+}
+
+.mm-popup__box__body {
+  margin-bottom: 20px;
 }
 
 .form-group {
@@ -42,7 +50,7 @@
   border-radius: 4px;
 }
 
-.popup-footer {
+.mm-popup__box__footer {
   display: flex;
   justify-content: space-between;
   margin-top: 20px;

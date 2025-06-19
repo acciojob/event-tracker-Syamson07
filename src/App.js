@@ -122,73 +122,83 @@ function App() {
 
       {/* Add Event Popup */}
       <Popup open={isOpen} onClose={() => setIsOpen(false)} modal>
-        <div className="popup-content">
-          <h3>Create New Event</h3>
-          <div className="form-group">
-            <input
-              type="text"
-              placeholder="Event Title"
-              value={newEvent.title}
-              onChange={(e) =>
-                setNewEvent({ ...newEvent, title: e.target.value })
-              }
-            />
+        <div className="mm-popup__box">
+          <div className="mm-popup__box__header">
+            <h3>Create New Event</h3>
           </div>
-          <div className="form-group">
-            <input
-              type="text"
-              placeholder="Event Location"
-              value={newEvent.location}
-              onChange={(e) =>
-                setNewEvent({ ...newEvent, location: e.target.value })
-              }
-            />
+          <div className="mm-popup__box__body">
+            <div className="form-group">
+              <input
+                type="text"
+                placeholder="Event Title"
+                value={newEvent.title}
+                onChange={(e) =>
+                  setNewEvent({ ...newEvent, title: e.target.value })
+                }
+              />
+            </div>
+            <div className="form-group">
+              <input
+                type="text"
+                placeholder="Event Location"
+                value={newEvent.location}
+                onChange={(e) =>
+                  setNewEvent({ ...newEvent, location: e.target.value })
+                }
+              />
+            </div>
           </div>
-          <div className="popup-footer">
-            <button className="mm-popup__btn" onClick={() => setIsOpen(false)}>
-              Cancel
-            </button>
-            <button
-              className="mm-popup__btn mm-popup__btn--primary"
-              onClick={handleAddEvent}
-            >
-              Save
-            </button>
+          <div className="mm-popup__box__footer">
+            <div className="mm-popup__box__footer__right-space">
+              <button className="mm-popup__btn" onClick={() => setIsOpen(false)}>
+                Cancel
+              </button>
+              <button
+                className="mm-popup__btn mm-popup__btn--primary"
+                onClick={handleAddEvent}
+              >
+                Save
+              </button>
+            </div>
           </div>
         </div>
       </Popup>
 
       {/* Edit/Delete Event Popup */}
       <Popup open={isEditOpen} onClose={() => setIsEditOpen(false)} modal>
-        <div className="popup-content">
-          <h3>Event Options</h3>
-          <div className="form-group">
-            <input
-              type="text"
-              placeholder="Event Title"
-              value={selectedEvent?.title || ''}
-              onChange={(e) =>
-                setSelectedEvent({
-                  ...selectedEvent,
-                  title: e.target.value,
-                })
-              }
-            />
+        <div className="mm-popup__box">
+          <div className="mm-popup__box__header">
+            <h3>Event Options</h3>
           </div>
-          <div className="form-group">
-            <input
-              type="text"
-              placeholder="Event Location"
-              value={selectedEvent?.location || ''}
-              onChange={(e) =>
-                setSelectedEvent({
-                  ...selectedEvent,
-                  location: e.target.value,
-                })
-              }
-            />
+          <div className="mm-popup__box__body">
+            <div className="form-group">
+              <input
+                type="text"
+                placeholder="Event Title"
+                value={selectedEvent?.title || ''}
+                onChange={(e) =>
+                  setSelectedEvent({
+                    ...selectedEvent,
+                    title: e.target.value,
+                  })
+                }
+              />
+            </div>
+            <div className="form-group">
+              <input
+                type="text"
+                placeholder="Event Location"
+                value={selectedEvent?.location || ''}
+                onChange={(e) =>
+                  setSelectedEvent({
+                    ...selectedEvent,
+                    location: e.target.value,
+                  })
+                }
+              />
+            </div>
           </div>
-          <div className="popup-footer">
+          <div className="mm-popup__box__footer">
             <button
               className="mm-popup__btn mm-popup__btn--danger"
               onClick={handleDeleteEvent}
